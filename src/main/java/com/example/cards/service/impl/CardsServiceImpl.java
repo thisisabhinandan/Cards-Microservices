@@ -75,5 +75,17 @@ public class CardsServiceImpl implements ICardsService {
         return true;
     }
 
+    @Override
+    public boolean isValidCard(String cardNumber, String mobileNumber) {
+         if(!cardsRepository.findByCardNumberAndMobileNumber(cardNumber, mobileNumber).isPresent())
+         {
+             throw new ResourceNotFoundException("Card","Card Number",cardNumber);
+         }
+         else
+         {
+             return true;
+         }
+    }
+
 
 }
